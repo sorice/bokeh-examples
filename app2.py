@@ -60,8 +60,6 @@ def bokeh():
     if current_feature_name == None:
         current_feature_name = "PetalWidth"
 
-    output_file("templates/histogram.html", mode='inline')
-
     # Create the plot
     plot = create_figure(current_feature_name, 10)
 
@@ -71,10 +69,10 @@ def bokeh():
 
     # Embed plot into HTML via Flask Render
     script, div = components(plot)
-    div = div + '<br><em>Note:</em> This example is to show how to color iris hist by class of flower using <em><i>fill_color</i></em>.</p>'
+    div = div + '<br><em>Note:</em> This example is to show how to use Jinja "select" widget</p>'
 
     return render_template(
-        "histogram.html",
+        "hist_iris.html",
         script=script,
         div=div,
         js_resources=js_resources,
