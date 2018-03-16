@@ -6,12 +6,17 @@
     {{ js_resources|indent(4)|safe }}
     {{ css_resources|indent(4)|safe }}
     {{ script|indent(4)|safe }}
+    <script language="javascript">
+      function submit_form(form_id) {
+          document.getElementById(form_id).submit();
+          }
+    </script>
 </head>
 <body>
 <H1>Iris Histogram</H1>
 
-<form action="/bokeh">
-<select name="feature_name">
+<form action="/bokeh" id="chart_form">
+<select name="feature_name" onchange="submit_form('chart_form')">
   {% for feature in feature_names %}
     {% if feature == current_feature_name %}
       <option selected value="{{ feature }}">{{ feature }}</option>
@@ -20,7 +25,6 @@
     {% endif %}
   {% endfor %}
 </select>
-<input type="submit">
 </form>
 
 {{ script|safe }}
